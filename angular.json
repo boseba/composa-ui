@@ -11,6 +11,11 @@
       "root": "projects/ui",
       "sourceRoot": "projects/ui/src",
       "prefix": "composa",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular/build:ng-packagr",

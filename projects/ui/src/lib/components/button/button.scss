@@ -1,0 +1,88 @@
+:host {
+  display: inline-block;
+
+  &.big {
+    span.icon {
+      position: relative;
+      display: inline-block;
+      align-items: center;
+      width: 3.6rem;
+      height: 3.6rem;
+
+      svg {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 2rem;
+        height: 2rem;
+        display: block;
+        stroke: currentColor;
+        fill: none;
+      }
+    }
+  }
+
+  button {
+    display: flex;
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.4rem;
+    background: rgba(255, 255, 255, 0.05);
+    gap: 0;
+    padding: 0;
+    color: inherit;
+
+    cursor: pointer;
+    user-select: none;
+
+    &:hover {
+      border-color: rgba(255, 105, 180, 0.2);
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: default;
+      pointer-events: none;
+    }
+
+    &.iconic {
+      &:not(.labeled) {
+        gap: 0;
+      }
+      &.labeled {
+        gap: 0.8rem;
+      }
+    }
+
+    &.labeled {
+      padding-right: 0.8rem;
+
+      &:not(.iconic) {
+        padding-left: 0.8rem;
+      }
+    }
+  }
+
+  span.icon {
+    position: relative;
+    display: inline-block;
+    align-items: center;
+    justify-content: center;
+    width: 2.8rem;
+    height: 2.8rem;
+
+    svg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 1.6rem;
+      height: 1.6rem;
+      display: block;
+      stroke: currentColor;
+      fill: none;
+    }
+  }
+}

@@ -1,0 +1,24 @@
+<button
+  [attr.type]="type"
+  [disabled]="disabled"
+  [class.iconic]="hasIcon()"
+  [class.labeled]="hasText()"
+>
+  @if (hasIcon()) {
+  <span class="icon">
+    <svg
+      aria-hidden="true"
+      focusable="false"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <use [attr.href]="`#${icon}`"></use>
+    </svg>
+  </span>
+  }
+
+  <span #label class="label">
+    <ng-content></ng-content>
+  </span>
+</button>
