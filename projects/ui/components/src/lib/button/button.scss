@@ -9,16 +9,9 @@
       width: 3.6rem;
       height: 3.6rem;
 
-      svg {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+      &::ng-deep svg {
         width: 2rem;
         height: 2rem;
-        display: block;
-        stroke: currentColor;
-        fill: none;
       }
     }
   }
@@ -73,7 +66,7 @@
     width: 2.8rem;
     height: 2.8rem;
 
-    svg {
+    &::ng-deep svg {
       position: absolute;
       top: 50%;
       left: 50%;
@@ -81,8 +74,6 @@
       width: 1.6rem;
       height: 1.6rem;
       display: block;
-      stroke: currentColor;
-      fill: none;
     }
   }
 }

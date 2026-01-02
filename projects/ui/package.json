@@ -1,6 +1,6 @@
 {
   "name": "@composa/ui",
-  "version": "0.0.0",
+  "version": "0.0.7",
   "description": "Composable UI primitives for Angular.",
   "author": "Sébastien Bosmans <https://github.com/boseba>",
   "license": "MIT",

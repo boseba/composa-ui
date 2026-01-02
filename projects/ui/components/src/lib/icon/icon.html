@@ -1,0 +1,9 @@
+<svg
+  #svg
+  focusable="false"
+  [attr.role]="ariaLabel() ? 'img' : null"
+  [attr.aria-hidden]="ariaLabel() ? null : 'true'"
+  [attr.aria-label]="ariaLabel() ?? null"
+>
+  <use [attr.href]="href()" [attr.xlink:href]="href()"></use>
+</svg>

@@ -1,1 +1,1 @@
-export * from './lib/index';
+export { provideComposaUi } from './lib/provide-composa-ui';

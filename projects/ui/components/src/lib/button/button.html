@@ -1,0 +1,17 @@
+<button
+  [attr.type]="type()"
+  [disabled]="disabled()"
+  [attr.aria-label]="effectiveAriaLabel()"
+  [class.iconic]="hasIcon()"
+  [class.labeled]="hasText()"
+>
+  @if (hasIcon()) {
+  <span class="icon">
+    <composa-icon [name]="icon()"></composa-icon>
+  </span>
+  }
+
+  <span #label class="label">
+    <ng-content></ng-content>
+  </span>
+</button>

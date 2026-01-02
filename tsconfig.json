@@ -1,8 +1,7 @@
-/* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */
-/* To learn more about Angular compiler options: https://angular.dev/reference/configs/angular-compiler-options. */
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "baseUrl": ".",
     "strict": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
@@ -15,9 +14,19 @@
     "target": "ES2022",
     "module": "preserve",
     "paths": {
-      "ui": [
-        "./dist/ui"
-      ]
+      "@composa/ui": ["./projects/ui/src/public-api.ts"],
+      "@composa/ui/core": ["./projects/ui/core/src/public-api.ts"],
+      "@composa/ui/core/*": ["./projects/ui/core/src/*"],
+      "@composa/ui/services": ["./projects/ui/services/src/public-api.ts"],
+      "@composa/ui/services/*": ["./projects/ui/services/src/*"],
+      "@composa/ui/components": ["./projects/ui/components/src/public-api.ts"],
+      "@composa/ui/components/*": ["./projects/ui/components/src/*"],
+      "@composa/ui/models": ["./projects/ui/models/src/public-api.ts"],
+      "@composa/ui/models/*": ["./projects/ui/models/src/*"],
+      "@composa/ui/utils": ["./projects/ui/utils/src/public-api.ts"],
+      "@composa/ui/utils/*": ["./projects/ui/utils/src/*"],
+      "@composa/ui/core/internal": ["./projects/ui/core/internal/src/public-api.ts"],
+      "@composa/ui/core/internal/*": ["./projects/ui/core/internal/src/*"]
     }
   },
   "angularCompilerOptions": {
@@ -27,12 +36,12 @@
     "strictTemplates": true
   },
   "files": [],
+  "include": [
+    "projects/**/*.ts",
+    "src/**/*.ts"
+  ],
   "references": [
-    {
-      "path": "./projects/ui/tsconfig.lib.json"
-    },
-    {
-      "path": "./projects/ui/tsconfig.spec.json"
-    }
+    { "path": "./projects/ui/tsconfig.lib.json" },
+    { "path": "./projects/ui/tsconfig.spec.json" }
   ]
 }
