@@ -6,11 +6,10 @@ import {
   effect,
   type ElementRef,
   inject,
-  Injector,
   input,
-  runInInjectionContext,
   type Signal,
   signal,
+  untracked,
   viewChild,
   type WritableSignal,
 } from '@angular/core';
@@ -26,19 +25,10 @@ import { IconRegistryService } from '@composa/ui/services';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Icon {
-  /**
-   * Icon reference to resolve from the registry ("#<icon-name>", "#<set name>:<icon-name>").
-   */
   public readonly name = input.required<string>();
-
-  /**
-   * Accessible label for the icon.
-   * When omitted, the icon is treated as decorative.
-   */
   public readonly ariaLabel = input<string | undefined>(undefined);
 
   private readonly _registry: IconRegistryService = inject(IconRegistryService);
-  private readonly _injector: Injector = inject(Injector);
 
   private readonly _svgRef: Signal<ElementRef<SVGSVGElement>> =
     viewChild.required<ElementRef<SVGSVGElement>>('svg');
@@ -46,7 +36,7 @@ export class Icon {
   private readonly _isViewReady: WritableSignal<boolean> = signal<boolean>(false);
 
   protected readonly resolved: Signal<ResolvedIcon | null> = computed((): ResolvedIcon | null =>
-    this._registry.resolve(this.name())
+    this._registry.resolve(this.name()),
   );
 
   protected readonly href: Signal<string | null> = computed((): string | null => {
@@ -59,15 +49,15 @@ export class Icon {
       this._isViewReady.set(true);
     });
 
-    runInInjectionContext(this._injector, (): void => {
-      effect((): void => {
-        if (!this._isViewReady()) {
-          return;
-        }
+    effect((): void => {
+      if (!this._isViewReady()) {
+        return;
+      }
 
+      const resolvedIcon: ResolvedIcon | null = this.resolved();
+
+      untracked((): void => {
         const svgElement: SVGSVGElement = this._svgRef().nativeElement;
-        const resolvedIcon: ResolvedIcon | null = this.resolved();
-
         this._applyMode(svgElement, resolvedIcon?.mode);
         this._applyAttributes(svgElement, resolvedIcon?.attributes);
       });
@@ -89,7 +79,7 @@ export class Icon {
 
   private _applyAttributes(
     svgElement: SVGSVGElement,
-    attributes: IconAttributes | undefined
+    attributes: IconAttributes | undefined,
   ): void {
     svgElement.removeAttribute('stroke-width');
     svgElement.removeAttribute('stroke-linecap');
@@ -99,22 +89,11 @@ export class Icon {
       return;
     }
 
-    const strokeWidth: string = attributes['stroke-width'];
-    const strokeWidthValue: string = strokeWidth.trim();
-    if (strokeWidthValue.length > 0) {
-      svgElement.setAttribute('stroke-width', strokeWidthValue);
-    }
-
-    const strokeLinecap: string = attributes['stroke-linecap'];
-    const strokeLinecapValue: string = strokeLinecap.trim();
-    if (strokeLinecapValue.length > 0) {
-      svgElement.setAttribute('stroke-linecap', strokeLinecapValue);
-    }
-
-    const strokeLinejoin: string = attributes['stroke-linejoin'];
-    const strokeLinejoinValue: string = strokeLinejoin.trim();
-    if (strokeLinejoinValue.length > 0) {
-      svgElement.setAttribute('stroke-linejoin', strokeLinejoinValue);
+    for (const [key, value] of Object.entries(attributes)) {
+      const normalizedValue: string = value.trim();
+      if (normalizedValue.length > 0) {
+        svgElement.setAttribute(key, normalizedValue);
+      }
     }
   }
 }
