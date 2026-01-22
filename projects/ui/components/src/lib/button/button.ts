@@ -14,7 +14,13 @@ import {
   type Signal,
   viewChild,
 } from '@angular/core';
-import { type ButtonType } from '@composa/ui/models';
+import type {
+  ButtonShape,
+  ButtonSize,
+  ButtonTone,
+  ButtonType,
+  ButtonVariant,
+} from '@composa/ui/models';
 import { Icon } from '../icon/icon';
 
 @Component({
@@ -24,8 +30,46 @@ import { Icon } from '../icon/icon';
   templateUrl: './button.html',
   styleUrl: './button.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[attr.data-variant]': 'variant()',
+    '[attr.data-tone]': 'tone()',
+    '[attr.data-shape]': 'effectiveShape()',
+    '[attr.data-size]': 'size()',
+  },
 })
 export class Button implements AfterViewInit, OnDestroy {
+  /**
+   * Visual variant of the button.
+   */
+  public readonly variant = input<ButtonVariant>('solid');
+
+  /**
+   * Color intent of the button.
+   */
+  public readonly tone = input<ButtonTone>('primary');
+
+  /**
+   * Shape of the button.
+   */
+  public readonly shape = input<ButtonShape>('rounded');
+
+  public readonly effectiveShape = computed((): ButtonShape => {
+    const requestedShape: ButtonShape = this.shape();
+
+    if (requestedShape !== 'round') {
+      return requestedShape;
+    }
+
+    // "round" is only meaningful for icon-only buttons
+    const isIconOnly: boolean = this.hasIcon() && !this.hasText();
+    return isIconOnly ? 'round' : 'rounded';
+  });
+
+  /**
+   * Size of the button.
+   */
+  public readonly size = input<ButtonSize>('medium');
+
   /**
    * Optional icon name to render before the label.
    * When empty (default), no icon is rendered.
@@ -136,7 +180,7 @@ export class Button implements AfterViewInit, OnDestroy {
 
     if (isIconOnly && !hasEffectiveLabel) {
       console.warn(
-        '[composa-button] Icon-only buttons should provide `ariaLabel` for accessibility.'
+        '[composa-button] Icon-only buttons should provide `ariaLabel` for accessibility.',
       );
     }
   }
