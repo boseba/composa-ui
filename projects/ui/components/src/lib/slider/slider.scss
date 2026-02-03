@@ -1,0 +1,109 @@
+:host {
+  --composa-slider-percent: 0;
+
+  --composa-slider-track-size: 4px;
+  --composa-slider-track-hover-size: 6px;
+  --composa-slider-thumb-size: 8px;
+  --composa-slider-hit-size: 28px;
+
+  --composa-slider-track-background: var(--color-white-20);
+  --composa-slider-track-hover-background: var(--color-white-30);
+  --composa-slider-fill-background: var(--color-accent);
+  --composa-slider-thumb-background: var(--color-accent);
+  --composa-slider-thumb-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
+  --composa-slider-focus-ring: 0 0 0 3px var(--color-accent);
+
+  display: inline-block;
+  width: 240px;
+  user-select: none;
+}
+
+.range {
+  position: relative;
+  width: 100%;
+  outline: none;
+}
+
+.track {
+  position: relative;
+  width: 100%;
+  height: var(--composa-slider-hit-size);
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  touch-action: none;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: var(--composa-slider-track-size);
+    transform: translateY(-50%);
+    border-radius: 999px;
+    background: var(--composa-slider-track-background);
+  }
+
+  &:hover {
+    &::before {
+      height: var(--composa-slider-track-hover-size);
+      background: var(--composa-slider-track-hover-background);
+    }
+
+    .fill {
+      height: var(--composa-slider-track-hover-size);
+    }
+  }
+
+  .fill {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    height: var(--composa-slider-track-size);
+    width: calc(var(--composa-slider-percent) * 100%);
+    transform: translateY(-50%);
+    border-radius: 999px;
+    background: var(--composa-slider-fill-background);
+  }
+}
+
+.track .thumb {
+  position: absolute;
+  top: 50%;
+  left: calc(var(--composa-slider-percent) * 100%);
+  width: var(--composa-slider-thumb-size);
+  height: var(--composa-slider-thumb-size);
+  transform: translate(-50%, -50%);
+  border-radius: 999px;
+  background: var(--composa-slider-thumb-background);
+  box-shadow: var(--composa-slider-thumb-shadow);
+  cursor: grab;
+}
+
+.range.dragging .thumb {
+  cursor: grabbing;
+}
+
+.range:focus-within .thumb {
+  box-shadow: var(--composa-slider-thumb-shadow), var(--composa-slider-focus-ring);
+}
+
+.native-range {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  width: 100%;
+  height: var(--composa-slider-hit-size);
+  margin: 0;
+  pointer-events: none;
+}
+
+.range.disabled .track {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.range.disabled .thumb {
+  cursor: not-allowed;
+}

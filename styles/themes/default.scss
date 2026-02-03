@@ -1,0 +1,61 @@
+.theme.default {
+  --color-accent: rgba(255, 105, 180, 1);
+  --color-accent-90: rgba(255, 105, 180, 0.9);
+  --color-accent-80: rgba(255, 105, 180, 0.8);
+  --color-accent-65: rgba(255, 105, 180, 0.65);
+  --color-accent-40: rgba(255, 105, 180, 0.4);
+  --color-accent-15: rgba(255, 105, 180, 0.15);
+  --color-accent-10: rgba(255, 105, 180, 0.1);
+  --color-accent-05: rgba(255, 105, 180, 0.05);
+
+  --color-secondary: rgb(65, 200, 243, 1);
+  --color-secondary-90: rgba(65, 200, 243, 0.9);
+  --color-secondary-80: rgba(65, 200, 243, 0.8);
+  --color-secondary-65: rgba(65, 200, 243, 0.65);
+  --color-secondary-40: rgba(65, 200, 243, 0.4);
+  --color-secondary-15: rgba(65, 200, 243, 0.15);
+  --color-secondary-10: rgba(65, 200, 243, 0.1);
+  --color-secondary-05: rgba(65, 200, 243, 0.05);
+
+  --color-foreground-main: var(--color-white-100);
+  --color-foreground-level1: var(--color-white-90);
+  --color-foreground-level2: var(--color-white-80);
+  --color-foreground-level3: var(--color-white-65);
+  --color-foreground-level4: var(--color-white-50);
+  --color-foreground-level5: var(--color-white-40);
+  --color-foreground-level6: var(--color-white-30);
+
+  --color-background-main: rgb(25, 25, 25);
+  --color-background-level1: rgb(37, 37, 37);
+  --color-background-level2: rgb(48, 48, 48);
+  --color-background-level3: rgb(59, 59, 59);
+  --color-background-level4: rgb(71, 71, 71);
+  --color-background-level0: rgb(25, 25, 25);
+
+  --color-border-level1: var(--color-white-25);
+  --color-border-level2: var(--color-white-20);
+  --color-border-level3: var(--color-white-15);
+  --color-border-level4: var(--color-white-10);
+
+  --color-divider-level1: var(--color-white-40);
+  --color-divider-level2: var(--color-white-30);
+  --color-divider-level3: var(--color-white-20);
+  --color-divider-level4: var(--color-white-10);
+
+  --color-layer-level1: var(--color-white-05);
+  --color-layer-level2: var(--color-white-10);
+  --color-layer-level3: var(--color-white-15);
+  --color-layer-level4: var(--color-white-20);
+
+  --color-background: var(--color-background-main);
+  --color-layer: var(--color-layer-level2);
+  --color-shadow: var(--color-black-90);
+  --color-border: var(--color-border-level1);
+  --color-divider: var(--color-divider-level2);
+  --color-active: var(--color-foreground-level1);
+  --color-strong: var(--color-foreground-main);
+  --color-title: var(--color-foreground-level1);
+  --color-title-secondary: var(--color-foreground-level2);
+  --color-text: var(--color-foreground-level3);
+  --color-hint: var(--color-foreground-level5);
+}

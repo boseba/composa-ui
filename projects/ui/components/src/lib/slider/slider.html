@@ -1,0 +1,30 @@
+<div
+  class="range"
+  [class.vertical]="orientation() === 'vertical'"
+  [class.disabled]="effectiveDisabled()"
+  [class.dragging]="dragging()"
+  [style.--composa-slider-percent]="percent()"
+  (pointermove)="onHostPointerMove($event)"
+  (pointerup)="onHostPointerUp($event)"
+  (pointercancel)="onHostPointerCancel($event)"
+>
+  <div #track class="track" (pointerdown)="onTrackPointerDown($event)">
+    <div class="fill"></div>
+
+    <div class="thumb" (pointerdown)="onThumbPointerDown($event)" aria-hidden="true"></div>
+  </div>
+
+  <input
+    #nativeRange
+    class="native-range"
+    type="range"
+    [attr.min]="min()"
+    [attr.max]="max()"
+    [attr.step]="step()"
+    [disabled]="effectiveDisabled()"
+    (input)="onNativeInput()"
+    (change)="onNativeChange()"
+    (focus)="onNativeFocus()"
+    (blur)="onNativeBlur()"
+  />
+</div>
