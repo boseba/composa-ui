@@ -1,0 +1,28 @@
+<span
+  class="tag"
+  [class.disabled]="disabled()"
+  [class.actions-hover]="actionVisibility() === 'hover'"
+  [class.actions-always]="actionVisibility() === 'always'"
+  [style.color]="color()"
+>
+  <span class="content">
+    <ng-content></ng-content>
+  </span>
+
+  @if (actions().length > 0) {
+    <span class="actions">
+      @for (action of actions(); track action.icon) {
+        <button
+          type="button"
+          class="action"
+          [disabled]="disabled() || action.disabled === true"
+          [attr.title]="action.tooltip ?? null"
+          [attr.aria-label]="getActionAriaLabel(action)"
+          (click)="onActionClick(action, $event)"
+        >
+          <span class="action-icon" aria-hidden="true">{{ action.icon }}</span>
+        </button>
+      }
+    </span>
+  }
+</span>

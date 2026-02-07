@@ -1,0 +1,89 @@
+:host {
+  --composa-tag-accent: var(--color-accent, #3b82f6);
+
+  --composa-tag-bg: color-mix(in srgb, var(--composa-tag-accent), transparent 88%);
+  --composa-tag-color: rgba(255, 255, 255, 0.9);
+  --composa-tag-border: 1px solid rgba(255, 255, 255, 0.2);
+
+  --composa-tag-radius: 16px;
+  --composa-tag-gap: 8px;
+  --composa-tag-padding-y: 3px;
+  --composa-tag-padding-x: 10px;
+
+  --composa-tag-action-size: 20px;
+  --composa-tag-action-gap: 4px;
+  --composa-tag-font-size: 1.1rem;
+
+  display: inline-block;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--composa-tag-gap);
+
+  padding: var(--composa-tag-padding-y) var(--composa-tag-padding-x);
+  border-radius: var(--composa-tag-radius);
+  border: var(--composa-tag-border);
+
+  background: currentColor;
+  font-size: var(--composa-tag-font-size);
+  color: transparent;
+}
+
+.content {
+  display: inline-flex;
+  min-width: 0;
+  color: var(--composa-tag-color);
+}
+
+.actions {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--composa-tag-action-gap);
+}
+
+.action {
+  width: var(--composa-tag-action-size);
+  height: var(--composa-tag-action-size);
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+
+  background: transparent;
+  color: inherit;
+
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.action:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.tag.actions-hover .actions {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.tag.actions-hover:hover .actions,
+.tag.actions-hover:focus-within .actions {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.tag.disabled {
+  opacity: 0.6;
+}
+
+.tag.disabled .action {
+  cursor: not-allowed;
+}
+
+.action-icon {
+  display: inline-block;
+  line-height: 1;
+}

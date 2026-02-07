@@ -1,0 +1,57 @@
+:host {
+  --composa-link-color: currentColor;
+  --composa-link-color-hover: currentColor;
+  --composa-link-color-visited: currentColor;
+  --composa-link-focus-ring: 0 0 0 3px rgba(59, 130, 246, 0.35);
+  --composa-link-disabled-opacity: 0.5;
+
+  color: var(--color-accent);
+  display: inline;
+
+  &.secondary {
+    color: var(--color-secondary);
+  }
+
+  &.neutral {
+    color: var(--color-foreground-level1);
+  }
+}
+
+.link {
+  color: var(--composa-link-color);
+  cursor: pointer;
+  text-decoration: none;
+  outline: none;
+}
+
+.link:hover {
+  color: var(--composa-link-color-hover);
+}
+
+.link:visited {
+  color: var(--composa-link-color-visited);
+}
+
+.link:focus-visible {
+  box-shadow: var(--composa-link-focus-ring);
+  border-radius: 4px;
+}
+
+.link.underline-always {
+  text-decoration: underline;
+}
+
+.link.underline-hover:hover {
+  text-decoration: underline;
+}
+
+.link.underline-never {
+  text-decoration: none;
+}
+
+.link.disabled {
+  cursor: not-allowed;
+  opacity: var(--composa-link-disabled-opacity);
+  text-decoration: none;
+  pointer-events: none;
+}
