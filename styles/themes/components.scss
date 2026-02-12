@@ -1,0 +1,10 @@
+.theme {
+  --composa-dialog-background: var(--color-background-level1);
+  --composa-dialog-z-index: 1000;
+  --composa-dialog-max-width: 70vw;
+  --composa-dialog-radius: 12px;
+  --composa-dialog-shadow: 0 18px 60px rgba(0, 0, 0, 0.35);
+  --composa-dialog-title-color: var(--color-title);
+  --composa-dialog-context-color: var(--color-text);
+  --composa-dialog-divider: var(--color-divider);
+}

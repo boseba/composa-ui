@@ -1,0 +1,16 @@
+<div class="composa-dialog-header">
+  <div class="text">
+    @if (title) {
+      <div class="title">{{ title }}</div>
+    }
+    @if (context) {
+      <div class="context">{{ context }}</div>
+    }
+  </div>
+
+  @if (closeButton && canClose) {
+    <button type="button" class="close" (click)="onCloseClicked()" aria-label="Close dialog">
+      ×
+    </button>
+  }
+</div>

@@ -1,0 +1,37 @@
+:host {
+  position: fixed;
+  inset: 0;
+  z-index: var(--composa-dialog-z-index);
+  display: block;
+  pointer-events: none;
+  font: inherit;
+}
+
+.composa-dialog-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  pointer-events: auto;
+}
+
+.composa-dialog-viewport {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  pointer-events: none;
+}
+
+.composa-dialog-panel {
+  pointer-events: auto;
+  max-width: var(--composa-dialog-max-width);
+  max-height: 90vh;
+  overflow: hidden;
+  border-radius: var(--composa-dialog-radius);
+  background: var(--composa-dialog-background);
+  box-shadow: var(--composa-dialog-shadow);
+  display: flex;
+  flex-direction: column;
+}

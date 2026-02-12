@@ -1,0 +1,20 @@
+@if (backdrop) {
+  <div
+    class="composa-dialog-backdrop"
+    (mousedown)="onBackdropMouseDown($event)"
+    (click)="onBackdropClick($event)"
+  ></div>
+}
+
+<div class="composa-dialog-viewport" (click)="onViewportClick($event)">
+  <div
+    #panel
+    class="composa-dialog-panel"
+    role="dialog"
+    aria-modal="true"
+    tabindex="-1"
+    [attr.data-dialog-id]="dialogId"
+  >
+    <ng-template #contentHost></ng-template>
+  </div>
+</div>

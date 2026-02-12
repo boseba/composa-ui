@@ -1,2 +1,1 @@
 export * from './dialog.model';
-export * from './icon.type';

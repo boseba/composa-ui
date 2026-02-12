@@ -16,6 +16,22 @@
     }
   }
 
+  &.contrast {
+    &.dark {
+      button {
+        border-color: transparent;
+        background: rgba(0, 0, 0, 0.6);
+        color: rgba(255, 255, 255, 0.7);
+
+        &:hover {
+          border-color: transparent;
+          background: rgba(0, 0, 0, 0.9);
+          color: rgba(255, 255, 255, 0.9);
+        }
+      }
+    }
+  }
+
   button {
     display: flex;
     align-items: center;
