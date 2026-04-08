@@ -1,16 +1,27 @@
 <div class="composa-dialog-header">
   <div class="text">
-    @if (title) {
-      <div class="title">{{ title }}</div>
-    }
     @if (context) {
       <div class="context">{{ context }}</div>
+    }
+    @if (title) {
+      <div class="title">{{ title }}</div>
     }
   </div>
 
   @if (closeButton && canClose) {
     <button type="button" class="close" (click)="onCloseClicked()" aria-label="Close dialog">
-      ×
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M18 6 6 18" />
+        <path d="m6 6 12 12" />
+      </svg>
     </button>
   }
 </div>

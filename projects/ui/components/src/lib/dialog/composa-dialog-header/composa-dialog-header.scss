@@ -1,3 +1,9 @@
+$dialog-context-color: var(--color-hint);
+$dialog-context-font-size: 1.3rem;
+$dialog-title-color: var(--color-title);
+$dialog-title-font-size: 1.8rem;
+$dialog-divider-color: var(--color-border-level4);
+
 :host {
   display: block;
 }
@@ -6,40 +12,43 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 16px;
-  padding: 16px 16px 12px 16px;
-  border-bottom: 1px solid var(--composa-dialog-divider);
+  gap: 1.6rem;
+  margin: 1.6rem 1.6rem 1.2rem 1.6rem;
+  border-bottom: 1px solid $dialog-divider-color;
 
   .text {
     min-width: 0;
     flex: 1;
   }
-  
+
   .title {
-    font-size: 16px;
+    font-size: $dialog-title-font-size;
     font-weight: 600;
-    line-height: 1.25;
-    color: var(--composa-dialog-title-color);
-    word-break: break-word;
+    margin-top: 1.6rem;
+    margin-bottom: 1.6rem;
+    color: $dialog-title-color;
   }
-  
+
   .context {
-    margin-top: 4px;
-    font-size: 13px;
-    line-height: 1.35;
-    color: var(--composa-dialog-context-color);
-    word-break: break-word;
+    color: $dialog-context-color;
+    letter-spacing: 0.14rem;
+    text-transform: uppercase;
+    font-size: $dialog-context-font-size;
   }
-  
+
   button.close {
     flex: 0 0 auto;
     border: none;
     background: transparent;
-    font-size: 18px;
-    line-height: 1;
-    padding: 6px 10px;
-    border-radius: 8px;
+    padding: 0.6rem;
+    width: 3.2rem;
+    height: 3.2rem;
+    border-radius: 0.4rem;
     cursor: pointer;
-    color: var(--composa-dialog-close-color, rgba(0, 0, 0, 0.75));
+    color: var(--color-text);
+
+    &:hover {
+      color: var(--color-text-primary);
+    }
   }
 }

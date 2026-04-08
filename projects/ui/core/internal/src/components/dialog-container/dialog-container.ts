@@ -91,8 +91,7 @@ export class DialogContainer {
     dialogRef?.close(undefined);
   }
 
-  public onViewportClick(_event: MouseEvent): void {
-    console.log(_event);
+  public onViewportClick(): void {
     // Intentionally empty.
     // We close on backdrop click only, to avoid accidental closures.
   }

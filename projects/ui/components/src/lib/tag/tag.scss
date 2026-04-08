@@ -1,18 +1,17 @@
 :host {
-  --composa-tag-accent: var(--color-accent, #3b82f6);
+  --composa-tag-accent: var(--color-accent);
 
-  --composa-tag-bg: color-mix(in srgb, var(--composa-tag-accent), transparent 88%);
-  --composa-tag-color: rgba(255, 255, 255, 0.9);
+  --composa-tag-color: rgba(255, 255, 255, 1);
   --composa-tag-border: 1px solid rgba(255, 255, 255, 0.2);
 
-  --composa-tag-radius: 16px;
+  --composa-tag-radius: 0.4rem;
   --composa-tag-gap: 8px;
-  --composa-tag-padding-y: 3px;
-  --composa-tag-padding-x: 10px;
+  --composa-tag-padding-y: 0.2rem;
+  --composa-tag-padding-x: 0.4rem;
 
   --composa-tag-action-size: 20px;
-  --composa-tag-action-gap: 4px;
-  --composa-tag-font-size: 1.1rem;
+  --composa-tag-action-gap: 0.4rem;
+  --composa-tag-font-size: 1.2rem;
 
   display: inline-block;
 }

@@ -9,6 +9,7 @@ import {
   input,
   isDevMode,
   type OnDestroy,
+  output,
   PLATFORM_ID,
   signal,
   type Signal,
@@ -31,10 +32,11 @@ import { Icon } from '../icon/icon';
   styleUrl: './button.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    '[attr.data-variant]': 'variant()',
-    '[attr.data-tone]': 'tone()',
-    '[attr.data-shape]': 'effectiveShape()',
-    '[attr.data-size]': 'size()',
+    '[class.disabled]': 'disabled()',
+    '[attr.cmp-variant]': 'variant()',
+    '[attr.cmp-tone]': 'tone()',
+    '[attr.cmp-shape]': 'effectiveShape()',
+    '[attr.cmp-size]': 'size()',
   },
 })
 export class Button implements AfterViewInit, OnDestroy {
@@ -46,12 +48,14 @@ export class Button implements AfterViewInit, OnDestroy {
   /**
    * Color intent of the button.
    */
-  public readonly tone = input<ButtonTone>('primary');
+  public readonly tone = input<ButtonTone>('regular');
 
   /**
    * Shape of the button.
    */
   public readonly shape = input<ButtonShape>('rounded');
+
+  public readonly clicked = output<MouseEvent>();
 
   public readonly effectiveShape = computed((): ButtonShape => {
     const requestedShape: ButtonShape = this.shape();
@@ -87,6 +91,7 @@ export class Button implements AfterViewInit, OnDestroy {
    * Defaults to `"button"` to prevent unintended form submissions.
    */
   public readonly type = input<ButtonType>('button');
+  public readonly form = input<string | null>(null);
 
   /**
    * Disables the button when set to `true`.
@@ -131,6 +136,17 @@ export class Button implements AfterViewInit, OnDestroy {
   private readonly _hasText = signal<boolean>(false);
 
   private _textObserver: MutationObserver | null = null;
+
+  public onClick(event: MouseEvent): void {
+    if (this.disabled()) {
+      event.preventDefault();
+      event.stopPropagation();
+      return;
+    }
+
+    this.clicked.emit(event);
+    console.log('Button click emitted', event);
+  }
 
   public ngAfterViewInit(): void {
     this._refreshHasText();

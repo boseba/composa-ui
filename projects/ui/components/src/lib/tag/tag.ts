@@ -1,19 +1,7 @@
-import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ControlAction } from '@composa/ui/models';
 
 export type TagActionVisibility = 'hover' | 'always';
-
-export interface TagAction {
-  icon: string;
-  tooltip?: string;
-  click: (event: MouseEvent) => void;
-  disabled?: boolean;
-}
-
-export interface TagActionTriggeredEvent {
-  action: TagAction;
-  index: number;
-  originalEvent: MouseEvent;
-}
 
 @Component({
   selector: 'composa-tag',
@@ -26,12 +14,10 @@ export class Tag {
   public readonly color = input<string | null>(null);
   public readonly disabled = input<boolean>(false);
 
-  public readonly actions = input<ReadonlyArray<TagAction>>([]);
+  public readonly actions = input<ReadonlyArray<ControlAction>>([]);
   public readonly actionVisibility = input<TagActionVisibility>('hover');
 
-  public readonly actionTriggered = output<TagActionTriggeredEvent>();
-
-  public onActionClick(action: TagAction, event: MouseEvent): void {
+  public onActionClick(action: ControlAction, event: MouseEvent): void {
     event.stopPropagation();
 
     if (this.disabled() || action.disabled === true) {
@@ -42,7 +28,7 @@ export class Tag {
     action.click(event);
   }
 
-  public getActionAriaLabel(action: TagAction): string {
+  public getActionAriaLabel(action: ControlAction): string {
     const tooltip = action.tooltip?.trim();
     if (tooltip && tooltip.length > 0) {
       return tooltip;
