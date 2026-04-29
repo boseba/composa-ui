@@ -1,18 +1,12 @@
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
+import { ExcludedValuesValidationError } from '../models';
+import { ValidationErrorMessage } from '../models/validation-error-message.type';
 
 export interface ExcludedValuesValidatorOptions {
   values: readonly string[];
   caseSensitive?: boolean;
   trim?: boolean;
-  message?: string | ((value: string) => string);
-}
-
-export interface ExcludedValuesValidationError {
-  value: string;
-  values: readonly string[];
-  caseSensitive?: boolean;
-  trim?: boolean;
-  message?: string;
+  message?: ValidationErrorMessage;
 }
 
 function normalizeValue(
@@ -21,18 +15,33 @@ function normalizeValue(
   trim: boolean,
 ): string {
   const normalizedTrimmedValue: string = trim ? value.trim() : value;
+
   return caseSensitive
     ? normalizedTrimmedValue
     : normalizedTrimmedValue.toLowerCase();
 }
 
-export function excludedValuesValidator(options: ExcludedValuesValidatorOptions): ValidatorFn {
+function resolveMessage(
+  message: ValidationErrorMessage | undefined,
+  control: AbstractControl,
+  value: string,
+): string | undefined {
+  if (typeof message === 'function') {
+    return message(control, value);
+  }
+
+  return message;
+}
+
+export function excludedValuesValidator(
+  options: ExcludedValuesValidatorOptions,
+): ValidatorFn {
   const caseSensitive: boolean = options.caseSensitive ?? true;
   const trim: boolean = options.trim ?? true;
 
   const normalizedValues: ReadonlySet<string> = new Set(
-    options.values.map((value: string) =>
-      normalizeValue(value, caseSensitive, trim),
+    options.values.map((item: string) =>
+      normalizeValue(item, caseSensitive, trim),
     ),
   );
 
@@ -53,17 +62,12 @@ export function excludedValuesValidator(options: ExcludedValuesValidatorOptions)
       return null;
     }
 
-    const message: string | undefined =
-      typeof options.message === 'function'
-        ? options.message(value)
-        : options.message;
-
     const error: ExcludedValuesValidationError = {
       value,
       values: options.values,
       caseSensitive,
       trim,
-      message,
+      message: resolveMessage(options.message, control, value),
     };
 
     return {

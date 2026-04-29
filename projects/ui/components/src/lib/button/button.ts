@@ -145,7 +145,6 @@ export class Button implements AfterViewInit, OnDestroy {
     }
 
     this.clicked.emit(event);
-    console.log('Button click emitted', event);
   }
 
   public ngAfterViewInit(): void {
