@@ -12,8 +12,7 @@ import { DIALOG_REF } from '@composa/ui/models';
   styleUrl: './composa-dialog-header.scss',
 })
 export class DialogHeader {
-  private readonly _dialogRef: DialogRef<unknown> | null =
-    inject(DIALOG_REF, { optional: true });
+  private readonly _dialogRef: DialogRef<unknown> | null = inject(DIALOG_REF, { optional: true });
 
   @Input()
   public title = '';

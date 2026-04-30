@@ -3,12 +3,12 @@ import {
   Component,
   computed,
   effect,
-  type ElementRef,
   forwardRef,
   input,
   output,
   signal,
   viewChild,
+  type ElementRef,
   type Signal,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, type ControlValueAccessor } from '@angular/forms';

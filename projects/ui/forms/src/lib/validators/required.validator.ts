@@ -28,9 +28,7 @@ function resolveMessage(
   return message;
 }
 
-export function requiredValidator(
-  options: RequiredValidatorOptions = {},
-): ValidatorFn {
+export function requiredValidator(options: RequiredValidatorOptions = {}): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const value: string = control.value as string;
 
