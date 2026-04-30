@@ -3,7 +3,7 @@ import {
   Component,
   computed,
   effect,
-  ElementRef,
+  type ElementRef,
   forwardRef,
   input,
   output,
@@ -43,7 +43,7 @@ export class Input implements ControlValueAccessor {
   public readonly type = input<InputType>('text');
   public readonly disabled = input<boolean>(false);
 
-  public readonly actions = input<ReadonlyArray<ControlAction>>([]);
+  public readonly actions = input<readonly ControlAction[]>([]);
 
   public readonly value = input<string>('');
   public readonly valueChange = output<string>();
@@ -69,10 +69,10 @@ export class Input implements ControlValueAccessor {
 
   private readonly _internalValue = signal<string>('');
 
-  private _onChange: (value: string) => void = () => {};
-  private _onTouched: () => void = () => {};
+  private _onChange: (value: string) => void = () => undefined;
+  private _onTouched: () => void = () => undefined;
 
-  private _isWritingFromOutside: boolean = false;
+  private _isWritingFromOutside = false;
 
   private readonly _inputRef = viewChild.required<ElementRef<HTMLInputElement>>('input');
 
@@ -84,7 +84,7 @@ export class Input implements ControlValueAccessor {
         return;
       }
 
-      this._internalValue.set(externalValue ?? '');
+      this._internalValue.set(externalValue);
     });
   }
 

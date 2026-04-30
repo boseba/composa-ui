@@ -3,13 +3,13 @@ import {
   EnvironmentInjector,
   Injectable,
   Injector,
-  Type,
+  type Type,
   createComponent,
   inject,
 } from '@angular/core';
 import {
   DialogHost,
-  DialogInstance,
+  type DialogInstance,
   DialogScrollLock,
   ensureOverlayRootElement,
   removeOverlayRootElementIfEmpty,
@@ -17,7 +17,7 @@ import {
 import {
   DIALOG_DATA,
   DIALOG_REF,
-  DialogOptions,
+  type DialogOptions,
   DialogRef,
   normalizeDialogOptions,
 } from '@composa/ui/models';
@@ -33,7 +33,7 @@ export class DialogService {
   private _hostRef: ReturnType<typeof createComponent<DialogHost>> | null = null;
   private _hostElement: HTMLElement | null = null;
 
-  private _idCounter: number = 0;
+  private _idCounter = 0;
   private _globalKeydownListenerBound: ((event: KeyboardEvent) => void) | null = null;
 
   public show<TComponent, TData = unknown, TResult = unknown>(
@@ -141,7 +141,7 @@ export class DialogService {
       }
 
       const topInstance = this._getTopInstance();
-      if (!topInstance || !topInstance.options.closeOnEsc) {
+      if (!topInstance?.options.closeOnEsc) {
         return;
       }
 

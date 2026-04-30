@@ -1,10 +1,10 @@
-import { ValidatorFn } from '@angular/forms';
+import { type ValidatorFn } from '@angular/forms';
 import {
-  ExcludedValuesValidatorOptions,
+  type ExcludedValuesValidatorOptions,
   excludedValuesValidator,
 } from './validators/excluded-values.validator';
-import { RequiredValidatorOptions, requiredValidator } from './validators/required.validator';
-import { UrlValidatorOptions, urlValidator } from './validators/url.validator';
+import { type RequiredValidatorOptions, requiredValidator } from './validators/required.validator';
+import { type UrlValidatorOptions, urlValidator } from './validators/url.validator';
 
 export class ComposaValidators {
   public static required(options?: RequiredValidatorOptions): ValidatorFn {

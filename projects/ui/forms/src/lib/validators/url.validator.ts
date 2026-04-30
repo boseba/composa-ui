@@ -1,6 +1,6 @@
-import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
-import { UrlValidationError } from '../models';
-import { ValidationErrorMessage } from '../models/validation-error-message.type';
+import { type AbstractControl, type ValidationErrors, type ValidatorFn } from '@angular/forms';
+import { type UrlValidationError } from '../models';
+import { type ValidationErrorMessage } from '../models/validation-error-message.type';
 
 export interface UrlValidatorOptions {
   allowedProtocols?: readonly string[];

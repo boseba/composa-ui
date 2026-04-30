@@ -1,4 +1,4 @@
-import { DialogOptions } from '../../models';
+import { type DialogOptions } from '../../models';
 
 export function normalizeDialogOptions<TData>(
   options?: DialogOptions<TData>,

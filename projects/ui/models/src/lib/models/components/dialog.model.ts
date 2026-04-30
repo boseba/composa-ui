@@ -1,5 +1,5 @@
 import { inject } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { type Observable, Subject } from 'rxjs';
 import { DIALOG_DATA, DIALOG_REF } from '../..';
 
 export interface DialogOptions<TData = unknown> {
@@ -13,7 +13,7 @@ export class DialogRef<TResult = unknown> {
   private readonly _afterClosedSubject: Subject<TResult | undefined> = new Subject<
     TResult | undefined
   >();
-  private _isClosed: boolean = false;
+  private _isClosed = false;
 
   public get afterClosed$(): Observable<TResult | undefined> {
     return this._afterClosedSubject.asObservable();

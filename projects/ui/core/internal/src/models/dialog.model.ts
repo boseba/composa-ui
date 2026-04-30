@@ -1,6 +1,6 @@
 import type { ComponentRef } from '@angular/core';
-import { DialogOptions, DialogRef } from '@composa/ui/models';
-import { DialogContainer } from '../components';
+import { type DialogOptions, type DialogRef } from '@composa/ui/models';
+import { type DialogContainer } from '../components';
 
 export interface DialogInstance<TResult = unknown, TData = unknown> {
   id: string;
@@ -11,8 +11,8 @@ export interface DialogInstance<TResult = unknown, TData = unknown> {
 }
 
 export class DialogScrollLock {
-  private _lockCount: number = 0;
-  private _previousOverflow: string = '';
+  private _lockCount = 0;
+  private _previousOverflow = '';
 
   public lock(): void {
     this._lockCount += 1;

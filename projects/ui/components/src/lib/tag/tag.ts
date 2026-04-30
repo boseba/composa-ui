@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { ControlAction } from '@composa/ui/models';
+import { type ControlAction } from '@composa/ui/models';
 
 export type TagActionVisibility = 'hover' | 'always';
 
@@ -14,7 +14,7 @@ export class Tag {
   public readonly color = input<string | null>(null);
   public readonly disabled = input<boolean>(false);
 
-  public readonly actions = input<ReadonlyArray<ControlAction>>([]);
+  public readonly actions = input<readonly ControlAction[]>([]);
   public readonly actionVisibility = input<TagActionVisibility>('hover');
 
   public onActionClick(action: ControlAction, event: MouseEvent): void {
@@ -25,7 +25,7 @@ export class Tag {
       return;
     }
 
-    action.click(event);
+    void action.click(event);
   }
 
   public getActionAriaLabel(action: ControlAction): string {

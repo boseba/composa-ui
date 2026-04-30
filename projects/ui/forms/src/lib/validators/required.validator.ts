@@ -1,13 +1,19 @@
-import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
-import { RequiredValidationError } from '../models';
-import { ValidationErrorMessage } from '../models/validation-error-message.type';
+import { type AbstractControl, type ValidationErrors, type ValidatorFn } from '@angular/forms';
+import { type RequiredValidationError } from '../models';
+import { type ValidationErrorMessage } from '../models/validation-error-message.type';
 
 export interface RequiredValidatorOptions {
   message?: ValidationErrorMessage;
 }
 
 function isEmptyInputValue(value: string): boolean {
-  return value == null || value.length === 0;
+  return value.length === 0;
+}
+
+function isMessageFunction(
+  message: ValidationErrorMessage | undefined,
+): message is (control: AbstractControl, value: unknown) => string {
+  return typeof message === 'function';
 }
 
 function resolveMessage(
@@ -15,7 +21,7 @@ function resolveMessage(
   control: AbstractControl,
   value: string,
 ): string | undefined {
-  if (typeof message === 'function') {
+  if (isMessageFunction(message)) {
     return message(control, value);
   }
 

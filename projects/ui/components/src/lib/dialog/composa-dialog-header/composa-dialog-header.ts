@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input, inject } from '@angular/core';
-import { DialogRef } from '@composa/ui/models/lib/models/components/dialog.model';
-import { DIALOG_REF } from '@composa/ui/models/lib/types/components/dialog.type';
+import type { DialogRef } from '@composa/ui/models';
+import { DIALOG_REF } from '@composa/ui/models';
 
 @Component({
   selector: 'composa-dialog-header',
@@ -12,16 +12,17 @@ import { DIALOG_REF } from '@composa/ui/models/lib/types/components/dialog.type'
   styleUrl: './composa-dialog-header.scss',
 })
 export class DialogHeader {
-  private readonly _dialogRef: DialogRef<unknown> | null = inject(DIALOG_REF, { optional: true });
+  private readonly _dialogRef: DialogRef<unknown> | null =
+    inject(DIALOG_REF, { optional: true });
 
   @Input()
-  public title: string = '';
+  public title = '';
 
   @Input()
-  public context: string = '';
+  public context = '';
 
   @Input()
-  public closeButton: boolean = false;
+  public closeButton = false;
 
   public get canClose(): boolean {
     return !!this._dialogRef;

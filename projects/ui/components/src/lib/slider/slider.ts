@@ -56,8 +56,8 @@ export class Slider implements ControlValueAccessor {
   private _activePointerId: number | null = null;
   private _cachedTrackRect: DOMRect | null = null;
 
-  private _onChange: (value: number) => void = () => {};
-  private _onTouched: () => void = () => {};
+  private _onChange: (value: number) => void = () => undefined;
+  private _onTouched: () => void = () => undefined;
 
   public readonly effectiveDisabled = computed<boolean>(() => {
     return this.disabled() || this._formsDisabled();

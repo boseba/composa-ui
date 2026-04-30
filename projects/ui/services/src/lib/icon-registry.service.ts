@@ -31,7 +31,7 @@ export class IconRegistryService {
   private _unnamedSheet: SpriteSheetConfig | null = null;
 
   private readonly _pendingSheets: SpriteSheetConfig[] = [];
-  private _merging: boolean = false;
+  private _merging = false;
 
   /**
    * Initializes the registry from the global Composa configuration.
@@ -194,13 +194,13 @@ export class IconRegistryService {
     contents: readonly string[],
     sheets: readonly SpriteSheetConfig[]
   ): void {
-    const svgNs: string = 'http://www.w3.org/2000/svg';
+    const svgNs = 'http://www.w3.org/2000/svg';
     const parser: DOMParser = new DOMParser();
 
     const host: HTMLElement = this._getOrCreateHost();
     const rootSvg: SVGSVGElement = this._getOrCreateHostSvg(host, svgNs);
 
-    for (let index: number = 0; index < contents.length; index++) {
+    for (let index = 0; index < contents.length; index++) {
       const sheetText: string = contents[index];
       const sheet: SpriteSheetConfig = sheets[index];
 

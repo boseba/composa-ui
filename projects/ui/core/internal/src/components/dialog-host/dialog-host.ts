@@ -2,14 +2,14 @@ import {
   ApplicationRef,
   ChangeDetectionStrategy,
   Component,
-  ComponentRef,
+  type ComponentRef,
   EnvironmentInjector,
-  Injector,
-  Type,
+  type Injector,
+  type Type,
   createComponent,
   inject,
 } from '@angular/core';
-import { DialogInstance } from '../../models';
+import { type DialogInstance } from '../../models';
 import { DialogContainer } from '../dialog-container/dialog-container';
 
 @Component({

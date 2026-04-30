@@ -3,15 +3,15 @@ import {
   Component,
   ElementRef,
   EnvironmentInjector,
-  Injector,
+  type Injector,
   Input,
-  Type,
+  type Type,
   ViewChild,
   ViewContainerRef,
   createComponent,
   inject,
 } from '@angular/core';
-import { DIALOG_REF, DialogRef } from '@composa/ui/models';
+import { DIALOG_REF, type DialogRef } from '@composa/ui/models';
 
 @Component({
   selector: 'composa-internal-dialog-container',
@@ -33,10 +33,10 @@ export class DialogContainer {
   public dialogId!: string;
 
   @Input({ required: true })
-  public backdrop: boolean = true;
+  public backdrop = true;
 
   @Input({ required: true })
-  public closeOnOutsideClick: boolean = true;
+  public closeOnOutsideClick = true;
 
   @Input({ required: true })
   public contentComponent!: Type<unknown>;
@@ -44,7 +44,7 @@ export class DialogContainer {
   @Input({ required: true })
   public contentInjector!: Injector;
 
-  private _pointerDownOnBackdrop: boolean = false;
+  private _pointerDownOnBackdrop = false;
 
   public mountContent(): void {
     this._contentHost.clear();

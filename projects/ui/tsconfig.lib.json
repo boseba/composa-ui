@@ -10,8 +10,22 @@
     "declarationMap": true,
     "composite": true,
     "types": [],
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@composa/ui": ["src/public-api.ts"],
+      "@composa/ui/*": ["./*"]
+    }
   },
+  "include": [
+    "src/**/*.ts",
+    "components/src/**/*.ts",
+    "core/src/**/*.ts",
+    "core/internal/src/**/*.ts",
+    "forms/src/**/*.ts",
+    "models/src/**/*.ts",
+    "services/src/**/*.ts"
+  ],
   "exclude": [
     "**/*.spec.ts",
     "**/*.test.ts"
